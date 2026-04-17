@@ -1,696 +1,838 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aimen Sudhir — Data Scientist</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0a0d14;
+  --bg2: #0f1320;
+  --bg3: #141928;
+  --card: #131826;
+  --border: rgba(255,255,255,0.07);
+  --text: #e8eaf0;
+  --muted: #7a8099;
+  --green: #00e5a0;
+  --green-dim: rgba(0,229,160,0.10);
+  --green-glow: rgba(0,229,160,0.25);
+}
 
-  <title>Aimen Sudhir</title>
-  <meta content="" name="description">
-  <meta content="" name="keywords">
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
 
-  <!-- Favicons -->
-  <link href="assets/img/favicon.png" rel="icon">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Outfit', sans-serif;
+  font-size: 15px;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--green); border-radius: 3px; }
 
-  <!-- Vendor CSS Files -->
-  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-  <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
-  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+/* NAV */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 60px;
+  background: rgba(10,13,20,0.88);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-logo {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: 20px;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  text-decoration: none;
+}
+.nav-logo span { color: var(--green); }
+.nav-links { display: flex; gap: 36px; list-style: none; }
+.nav-links a {
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  transition: color 0.2s;
+  position: relative;
+  padding-bottom: 4px;
+}
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 0; height: 2px;
+  background: var(--green);
+  transition: width 0.25s ease;
+}
+.nav-links a:hover { color: var(--text); }
+.nav-links a:hover::after { width: 100%; }
+.nav-links a.active { color: var(--green); }
+.nav-links a.active::after { width: 100%; }
 
-  <!-- Template Main CSS File -->
-  <link href="assets/css/style.css" rel="stylesheet">
+/* HERO */
+#home {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 120px 60px 160px;
+  position: relative;
+  overflow: hidden;
+}
+#home::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(var(--border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(ellipse 80% 80% at 40% 50%, black 20%, transparent 100%);
+  animation: gridPulse 8s ease-in-out infinite;
+}
+@keyframes gridPulse {
+  0%,100% { opacity: 0.35; }
+  50% { opacity: 0.65; }
+}
+#home::after {
+  content: '';
+  position: absolute;
+  width: 700px; height: 700px;
+  background: radial-gradient(circle, rgba(0,229,160,0.07) 0%, transparent 70%);
+  top: -150px; right: -150px;
+  pointer-events: none;
+}
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 780px;
+}
+.hero-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--green-dim);
+  border: 1px solid rgba(0,229,160,0.28);
+  color: var(--green);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 6px 14px;
+  border-radius: 100px;
+  margin-bottom: 28px;
+  animation: fadeSlideUp 0.6s ease both;
+}
+.hero-tag::before {
+  content: '';
+  width: 7px; height: 7px;
+  background: var(--green);
+  border-radius: 50%;
+  animation: blink 2s ease infinite;
+}
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+.hero-name {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: clamp(52px, 8vw, 90px);
+  letter-spacing: -0.04em;
+  line-height: 1.0;
+  margin-bottom: 20px;
+  animation: fadeSlideUp 0.6s 0.1s ease both;
+}
+.hero-name span { color: var(--green); }
+.hero-sub {
+  font-size: clamp(15px, 2.2vw, 19px);
+  color: var(--muted);
+  font-weight: 300;
+  max-width: 520px;
+  margin-bottom: 40px;
+  animation: fadeSlideUp 0.6s 0.2s ease both;
+  line-height: 1.7;
+}
+.hero-actions {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  animation: fadeSlideUp 0.6s 0.3s ease both;
+}
+.btn-primary {
+  background: var(--green);
+  color: #0a0d14;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  padding: 13px 30px;
+  border-radius: 4px;
+  text-decoration: none;
+  letter-spacing: 0.02em;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 28px var(--green-glow); }
+.btn-ghost {
+  background: transparent;
+  color: var(--text);
+  font-family: 'Outfit', sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  padding: 13px 30px;
+  border-radius: 4px;
+  text-decoration: none;
+  letter-spacing: 0.02em;
+  border: 1px solid var(--border);
+  transition: border-color 0.2s, color 0.2s;
+}
+.btn-ghost:hover { border-color: var(--green); color: var(--green); }
 
-  <!-- =======================================================
-  * Template Name: Personal
-  * Updated: Jun 18 2023 with Bootstrap v5.3.0
-  * Template URL: https://bootstrapmade.com/personal-free-resume-bootstrap-template/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
+.hero-social {
+  position: absolute;
+  right: 60px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  z-index: 2;
+  animation: fadeSlideUp 0.6s 0.4s ease both;
+}
+.social-icon {
+  width: 42px; height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  color: var(--muted);
+  text-decoration: none;
+  transition: border-color 0.2s, color 0.2s, background 0.2s;
+}
+.social-icon:hover { border-color: var(--green); color: var(--green); background: var(--green-dim); }
+
+.hero-stats {
+  position: absolute;
+  bottom: 60px;
+  left: 60px;
+  display: flex;
+  gap: 52px;
+  z-index: 2;
+  animation: fadeSlideUp 0.6s 0.5s ease both;
+}
+.stat-item { display: flex; flex-direction: column; gap: 2px; }
+.stat-num {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: 30px;
+  color: var(--green);
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+.stat-label { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.09em; }
+
+@keyframes fadeSlideUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* SECTIONS */
+.section { padding: 96px 60px; position: relative; }
+.section:nth-child(even) { background: var(--bg2); }
+
+.section-header { margin-bottom: 56px; }
+.section-tag {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--green);
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.section-tag::before { content: ''; width: 24px; height: 2px; background: var(--green); }
+.section-title {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: clamp(26px, 4vw, 40px);
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+.section-title span { color: var(--green); }
+
+/* ABOUT */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 72px;
+  align-items: start;
+}
+.about-text p {
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.85;
+  margin-bottom: 18px;
+}
+.about-text p strong { color: var(--text); font-weight: 600; }
+.about-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+.about-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 22px 18px;
+  transition: border-color 0.2s, transform 0.2s;
+}
+.about-card:hover { border-color: rgba(0,229,160,0.35); transform: translateY(-3px); }
+.about-card-icon { font-size: 20px; margin-bottom: 10px; }
+.about-card-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 14px; margin-bottom: 5px; }
+.about-card-desc { font-size: 12px; color: var(--muted); line-height: 1.5; }
+
+/* EXPERIENCE */
+.timeline { position: relative; max-width: 820px; }
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 10px; bottom: 0;
+  width: 1px;
+  background: linear-gradient(to bottom, var(--green) 60%, transparent);
+}
+.timeline-item {
+  padding-left: 44px;
+  padding-bottom: 52px;
+  position: relative;
+}
+.timeline-item:last-child { padding-bottom: 0; }
+.timeline-dot {
+  position: absolute;
+  left: -6px; top: 6px;
+  width: 13px; height: 13px;
+  background: var(--bg);
+  border: 2px solid var(--green);
+  border-radius: 50%;
+  transition: background 0.2s;
+}
+.timeline-item:hover .timeline-dot { background: var(--green); }
+.timeline-date {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--green);
+  margin-bottom: 6px;
+}
+.timeline-company {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  letter-spacing: -0.02em;
+  margin-bottom: 2px;
+}
+.timeline-meta {
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 16px;
+}
+.timeline-meta span {
+  display: inline-block;
+  margin-right: 14px;
+  font-weight: 500;
+  color: rgba(0,229,160,0.75);
+}
+.timeline-bullets { list-style: none; }
+.timeline-bullets li {
+  position: relative;
+  padding-left: 16px;
+  font-size: 14px;
+  color: #9ba0b4;
+  line-height: 1.75;
+  margin-bottom: 6px;
+}
+.timeline-bullets li::before {
+  content: '▹';
+  position: absolute;
+  left: 0;
+  color: var(--green);
+  font-size: 11px;
+  top: 3px;
+}
+.timeline-bullets li strong { color: var(--text); font-weight: 600; }
+
+/* EDUCATION */
+.edu-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+  gap: 18px;
+  max-width: 1000px;
+}
+.edu-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 28px 24px;
+  transition: border-color 0.2s, transform 0.2s;
+  position: relative;
+  overflow: hidden;
+}
+.edu-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: var(--green);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+.edu-card:hover::before { transform: scaleX(1); }
+.edu-card:hover { border-color: rgba(0,229,160,0.3); transform: translateY(-4px); }
+.edu-year { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--green); margin-bottom: 8px; }
+.edu-school { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 17px; line-height: 1.3; margin-bottom: 6px; }
+.edu-degree { font-size: 13px; color: var(--muted); margin-bottom: 14px; line-height: 1.5; }
+.edu-gpa {
+  display: inline-block;
+  background: var(--green-dim);
+  border: 1px solid rgba(0,229,160,0.25);
+  color: var(--green);
+  font-size: 12px;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 100px;
+  margin-bottom: 12px;
+}
+.edu-courses { font-size: 12px; color: var(--muted); line-height: 1.6; }
+
+/* SKILLS */
+.skills-layout {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 18px;
+  max-width: 1000px;
+}
+.skill-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 26px;
+  transition: border-color 0.2s;
+}
+.skill-card:hover { border-color: rgba(0,229,160,0.3); }
+.skill-card-header { display: flex; align-items: center; gap: 12px; margin-bottom: 18px; }
+.skill-icon {
+  width: 36px; height: 36px;
+  background: var(--green-dim);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 17px;
+}
+.skill-card-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 14px; }
+.skill-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.skill-tag {
+  font-size: 12px;
+  font-weight: 500;
+  padding: 4px 11px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  color: #9ba0b4;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+  cursor: default;
+}
+.skill-tag:hover { background: var(--green-dim); border-color: rgba(0,229,160,0.4); color: var(--green); }
+
+/* CONTACT */
+.contact-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 72px;
+  max-width: 880px;
+}
+.contact-info p { color: var(--muted); font-size: 15px; line-height: 1.85; margin-bottom: 32px; }
+.contact-items { display: flex; flex-direction: column; gap: 18px; }
+.contact-row { display: flex; align-items: center; gap: 16px; }
+.contact-icon-wrap {
+  width: 42px; height: 42px;
+  background: var(--green-dim);
+  border: 1px solid rgba(0,229,160,0.2);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 17px;
+}
+.contact-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); }
+.contact-val { font-size: 14px; font-weight: 500; color: var(--text); }
+.contact-val a { color: var(--text); text-decoration: none; transition: color 0.2s; }
+.contact-val a:hover { color: var(--green); }
+
+.contact-interests {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 30px;
+}
+.contact-interests h3 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 16px; margin-bottom: 20px; }
+.interest-items { display: flex; flex-direction: column; gap: 16px; }
+.interest-row { display: flex; align-items: center; gap: 14px; font-size: 14px; color: var(--muted); }
+.interest-emoji { font-size: 20px; }
+
+/* FOOTER */
+footer {
+  background: var(--bg);
+  border-top: 1px solid var(--border);
+  padding: 26px 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+/* SCROLL REVEAL */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.55s ease, transform 0.55s ease;
+}
+.reveal.visible { opacity: 1; transform: none; }
+
+/* RESPONSIVE */
+@media (max-width: 820px) {
+  nav { padding: 16px 24px; }
+  .nav-links { display: none; }
+  #home, .section { padding-left: 24px; padding-right: 24px; }
+  .hero-social { display: none; }
+  .hero-stats { bottom: 28px; left: 24px; gap: 28px; flex-wrap: wrap; }
+  .about-grid, .contact-layout { grid-template-columns: 1fr; gap: 40px; }
+  footer { flex-direction: column; gap: 8px; text-align: center; }
+}
+</style>
 </head>
-
 <body>
 
-  <!-- ======= Header ======= -->
-  <header id="header">
-    <div class="container">
+<nav>
+  <a href="#home" class="nav-logo">Aimen<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
 
-      <h1><a href="index.html">Aimen Sudhir</a></h1>
-      <!-- Uncomment below if you prefer to use an image logo -->
-      <!-- <a href="index.html" class="mr-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a> -->
-      <h2>I'm a passionate <span>Engineer</span> from Boston</h2>
-
-      <nav id="navbar" class="navbar">
-        <ul>
-          <li><a class="nav-link active" href="#header">Home</a></li>
-          <li><a class="nav-link" href="#about">About</a></li>
-          <li><a class="nav-link" href="#resume">Resume</a></li>
-          <li><a class="nav-link" href="#services">Services</a></li>
-          <li><a class="nav-link" href="#portfolio">Portfolio</a></li>
-          <li><a class="nav-link" href="#contact">Contact</a></li>
-        </ul>
-        <i class="bi bi-list mobile-nav-toggle"></i>
-      </nav><!-- .navbar -->
-
-      <div class="social-links">
-        <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
-        <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
-        <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-        <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
-      </div>
-
+<!-- HERO -->
+<section id="home">
+  <div class="hero-content">
+    <div class="hero-tag">Available for opportunities</div>
+    <h1 class="hero-name">Aimen<br><span>Sudhir</span></h1>
+    <p class="hero-sub">Data Scientist specializing in supply chain optimization, predictive modeling, and logistics analytics — based in Boston, MA.</p>
+    <div class="hero-actions">
+      <a href="#experience" class="btn-primary">View My Work</a>
+      <a href="#contact" class="btn-ghost">Get In Touch</a>
     </div>
-  </header><!-- End Header -->
-
-  <!-- ======= About Section ======= -->
-  <section id="about" class="about">
-
-    <!-- ======= About Me ======= -->
-    <div class="about-me container">
-
-      <div class="section-title">
-        <h2>About</h2>
-        <p>Learn more about me</p>
-      </div>
-
-      <div class="row">
-        <div class="col-lg-4" data-aos="fade-right">
-          <img src="assets/img/me.png" class="img-fluid" alt="">
-        </div>
-        <div class="col-lg-8 pt-4 pt-lg-0 content" data-aos="fade-left">
-          <h3>Industrial &amp; Systems Engineer</h3>
-          <p class="fst-italic">
-            A firm believer of do-it-yourself. I've made it a point to pick and hone varied skills over the years by either
-            working on projects or venturing into my own. 
-          </p>
-          <div class="row">
-            <div class="col-lg-6">
-              <ul>
-                <li><i class="bi bi-chevron-right"></i> <strong>Birthday:</strong> <span>06 June 1997</span></li>
-                <li><i class="bi bi-chevron-right"></i> <strong>Website:</strong> <span>https://sudhiraimen.github.io/</span></li>
-                <li><i class="bi bi-chevron-right"></i> <strong>Phone:</strong> <span>+1 848 234 8081</span></li>
-                <li><i class="bi bi-chevron-right"></i> <strong>City:</strong> <span>Boston, USA</span></li>
-              </ul>
-            </div>
-            <div class="col-lg-6">
-              <ul>
-                <li><i class="bi bi-chevron-right"></i> <strong>Age:</strong> <span>26</span></li>
-                <li><i class="bi bi-chevron-right"></i> <strong>Degree:</strong> <span>MS: Industrial & Systems Engineering</span></li>
-                <li><i class="bi bi-chevron-right"></i> <strong>Email:</strong> <span>ua85@rutgers.edu</span></li>
-              </ul>
-            </div>
-          </div>
-          <p>
-            I'm eager to find a position that nurtures my combined love for engineering,
-            technology, creativity, and business skills, and at the same time, helps me grow as an individual by maximizing social impact.
-          </p>
-        </div>
-      </div>
-
-    </div><!-- End About Me -->
-
-    <!-- ======= Interests ======= -->
-    <div class="interests container">
-
-      <div class="section-title">
-        <h2>Interests</h2>
-      </div>
-
-      <div class="row">
-        <div class="col-lg-3 col-md-4">
-          <div class="icon-box">
-            <i class="ri-store-line" style="color: #ffbb2c;"></i>
-            <h3>Graphic Designing</h3>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-4 mt-4 mt-md-0">
-          <div class="icon-box">
-            <i class="ri-bar-chart-box-line" style="color: #5578ff;"></i>
-            <h3>Football</h3>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-4 mt-4 mt-md-0">
-          <div class="icon-box">
-            <i class="ri-calendar-todo-line" style="color: #e80368;"></i>
-            <h3>Hiking</h3>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-4 mt-4 mt-lg-0">
-          <div class="icon-box">
-            <i class="ri-paint-brush-line" style="color: #e361ff;"></i>
-            <h3>Snowboarding</h3>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-4 mt-4">
-          <div class="icon-box">
-            <i class="ri-database-2-line" style="color: #47aeff;"></i>
-            <h3>Diving</h3>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-4 mt-4">
-          <div class="icon-box">
-            <i class="ri-gradienter-line" style="color: #ffa76e;"></i>
-            <h3>Eiusmod Tempor</h3>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-4 mt-4">
-          <div class="icon-box">
-            <i class="ri-file-list-3-line" style="color: #11dbcf;"></i>
-            <h3>Midela Teren</h3>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-4 mt-4">
-          <div class="icon-box">
-            <i class="ri-price-tag-2-line" style="color: #4233ff;"></i>
-            <h3>Pira Neve</h3>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-4 mt-4">
-          <div class="icon-box">
-            <i class="ri-anchor-line" style="color: #b2904f;"></i>
-            <h3>Dirada Pack</h3>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-4 mt-4">
-          <div class="icon-box">
-            <i class="ri-disc-line" style="color: #b20969;"></i>
-            <h3>Moton Ideal</h3>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-4 mt-4">
-          <div class="icon-box">
-            <i class="ri-base-station-line" style="color: #ff5828;"></i>
-            <h3>Verdo Park</h3>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-4 mt-4">
-          <div class="icon-box">
-            <i class="ri-fingerprint-line" style="color: #29cc61;"></i>
-            <h3>Flavor Nivelanda</h3>
-          </div>
-        </div>
-      </div>
-
-    </div><!-- End Interests -->
-
-    <!-- ======= Testimonials ======= -->
-    <div class="testimonials container">
-
-      <div class="section-title">
-        <h2>Testimonials</h2>
-      </div>
-
-      <div class="testimonials-slider swiper" data-aos="fade-up" data-aos-delay="100">
-        <div class="swiper-wrapper">
-
-          <div class="swiper-slide">
-            <div class="testimonial-item">
-              <p>
-                <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                I sat down with Aimen earlier this morning and I was reminded of how enjoyable the recruiting process was during Aimen's pursuit of landing his current role as an Analyst,
-                Simulation for BCG GAMMA! Aimen brings a unique blend of technical depth and functional talents. His communication is extremely strong and I would feel comfortable placing him
-                in front of our clients for BCG. I look forward to watching Aimen grow and impact the organization as a whole in a positive-light. I'd recommend Aimen 10/10 times for any
-                organization who is looking to improve/perfect their simulation environment.
-                <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-              </p>
-              <img src="assets/img/testimonials/testimonials-1.jpg" class="testimonial-img" alt="">
-              <h3>Adam Malone</h3>
-              <h4>BCG</h4>
-            </div>
-          </div><!-- End testimonial item -->
-
-          <div class="swiper-slide">
-            <div class="testimonial-item">
-              <p>
-                <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                Aimen was in the Supply Chain Engineering class I taught. In the class, he engaged in the discussions actively. He demonstrated quick learning ability - using simulation tool like
-                AnyLogic - applying simulation to various supply chain optimization problems. He was eager to learn real world industry examples. Fast forward a year and when he reached out to be a
-                graduate assistant for the Advanced Supply Chain Engineering class, I gladly took his help. He has quickly taken on new responsibilities and executed them flawlessly. He demonstrated
-                quick learning ability again when we explored another simulation tool FlexSim. He designed various simulation problems in all the areas of supply chain - Plan / Source / Make and Deliver.
-                He patiently worked with my class not only clarifying their questions on assignments, but also clearly explaining the learning goals of the assignments. He is a dedicated professional,
-                always willing to go the extra mile to help you out when you needed it. He has always impressed me with his ability to deal with conflicting priorities in high-pressure situations.
-                I recommend Aimen for any key supply chain and or industrial engineering roles - as he is a great team player, patient teacher, quick learner, and innovator.
-                <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-              </p>
-              <img src="assets/img/testimonials/testimonials-2.jpg" class="testimonial-img" alt="">
-              <h3>Arun Kumar Bhaskara-Baba</h3>
-              <h4>Professor at Rutgers University</h4>
-            </div>
-          </div><!-- End testimonial item -->
-
-          <div class="swiper-slide">
-            <div class="testimonial-item">
-              <p>
-                <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                Aimen has proved to be both a talented and a dedicated student. He collaborated with me along with three other members on a project back in 2019. In this cooperation, Aimen demonstrated
-                a deep knowledge of his field and a natural ability to share his expertise in a pleasant and comprehensible manner. His patience for my tricky questions is something I will always value.
-                I strongly recommend Aimen as a professional that you can learn a lot from. I'm sure he will be a great asset to any team he joins.
-                <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-              </p>
-              <img src="assets/img/testimonials/testimonials-3.jpg" class="testimonial-img" alt="">
-              <h3>Tuğrul ÖzelTuğrul Özel</h3>
-              <h4>Professor at Rutgers University</h4>
-            </div>
-          </div><!-- End testimonial item -->
-
-          <div class="swiper-slide">
-            <div class="testimonial-item">
-              <p>
-                <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                Fugiat enim eram quae cillum dolore dolor amet nulla culpa multos export minim fugiat minim velit minim dolor enim duis veniam ipsum anim magna sunt elit fore quem dolore labore illum veniam.
-                <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-              </p>
-              <img src="assets/img/testimonials/testimonials-4.jpg" class="testimonial-img" alt="">
-              <h3>Matt Brandon</h3>
-              <h4>Freelancer</h4>
-            </div>
-          </div><!-- End testimonial item -->
-
-          <div class="swiper-slide">
-            <div class="testimonial-item">
-              <p>
-                <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                Quis quorum aliqua sint quem legam fore sunt eram irure aliqua veniam tempor noster veniam enim culpa labore duis sunt culpa nulla illum cillum fugiat legam esse veniam culpa fore nisi cillum quid.
-                <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-              </p>
-              <img src="assets/img/testimonials/testimonials-5.jpg" class="testimonial-img" alt="">
-              <h3>John Larson</h3>
-              <h4>Entrepreneur</h4>
-            </div>
-          </div><!-- End testimonial item -->
-
-        </div>
-        <div class="swiper-pagination"></div>
-      </div>
-
-      <div class="owl-carousel testimonials-carousel">
-
-      </div>
-
-    </div><!-- End Testimonials  -->
-
-  </section><!-- End About Section -->
-
-  <!-- ======= Resume Section ======= -->
-  <section id="resume" class="resume">
-    <div class="container">
-
-      <div class="section-title">
-        <h2>Resume</h2>
-        <p>Check My Resume</p>
-      </div>
-
-      <div class="row">
-        <div class="col-lg-6">
-          <h3 class="resume-title">Skills</h3>
-          <div class="resume-item pb-0">
-            <h4>Programming Languages</h4>
-            <p><em>Python, Java, SQL, R, GAMS, VBA.</em></p>
-          </div>
-          <div class="resume-item pb-0">
-            <h4>Tools and Software</h4>
-            <p><em>Tableau, Alteryx, Microsoft Office Suite, AnyLogic, Adobe Creative Suite.</em></p>
-          </div>
-          <div class="resume-item pb-0">
-            <h4>Functional Knowledge</h4>
-            <p><em>Data Analysis Tools, Simulation, Linear Programming, Statistical Analysis, Agent-Based Modeling, Workforce Allocation, Poka-Yoke, Blueprints, DMAIC, Data Modeling, Six Sigma, Continuous Improvement, Kaizen, Validation, Agile Methodologies, Data Visualization.</em></p>
-          </div>
-
-          <h3 class="resume-title">Education</h3>
-          <div class="resume-item">
-            <h4>Master of Science in Industrial & Systems Engineering</h4>
-            <h5>2019 - 2021</h5>
-            <p><em>Rutgers University | New Brunswick, NJ</em></p>
-            <p>Relevant Coursework: Simulation of Production Systems, Data Analytics in Engineering, Deterministic Models in I. E. (Optimization), Engineering
-              Decision Making Under Uncertainty, Supply Chain Engineering, Advanced Manufacturing, Project Management.</p>
-          </div>
-          <div class="resume-item">
-            <h4>Bachelor of Technology in Production Engineering</h4>
-            <h5>2015 - 2019</h5>
-            <p><em>Veermata Jijabai Technological Institute (V.J.T.I) | Mumbai, India</em></p>
-            <p>Relevant Coursework: Operation Research, Industrial Engineering, Supply Chain Management, Product Lifecycle Management, Management
-              Information Systems & Enterprise Resource Planning, Manufacturing Engineering.</p>
-          </div>
-          <h3 class="resume-title">Academic Projects</h3>
-          <div class="resume-item">
-            <h4>Inventory Analysis and Pedestrian Modeling of Rock Café</h4>
-            <h5>Jan 2020 - May 2020</h5>
-            <p><em>Rutgers University | New Brunswick, NJ</em></p>
-            <p>
-              <li>Designed a pedestrian model of Rock Café using AnyLogic to reduce the revenue lost by 90% and waiting time of
-                the customers by 10%.</li>
-              <li>Analyzed the cafe's weekly inventory data using python and formulated the optimal reorder point to reduce waste
-                generation by 80% and inventory holding costs by 15%.</li>
-            </p>
-          </div>
-        </div>
-        <div class="col-lg-6">
-          <h3 class="resume-title">Professional Experience</h3>
-          <div class="resume-item">
-            <h4>The Boston Consulting Group, Inc. | Boston, MA</h4>
-            <h5>Aug 2022 - Present</h5>
-            <p><em>Analyst</em></p>
-            <p>
-            <ul>
-              <li>Developed a Multi-Echelon Inventory Optimization model for a $70B international medical technology company,
-                leading to a 20% reduction in inventory for high volume priority SKU, and significantly enhancing operational
-                efficiency and cost-effectiveness.</li>
-              <li>Developed and implemented an optimization model for a $15B mining company to optimize their rail network,
-                including route planning, scheduling, and load optimization, thereby reducing congestion by 7% and improving
-                delivery times by 4%.</li>
-              <li>Utilized advanced data analytics and simulation tools to model various scenarios, evaluate the formulated
-                hypotheses, and identify the most cost-effective solutions.</li>
-            </ul>
-            </p>
-          </div>
-          <div class="resume-item">
-            <h4>Integrated Insight, Inc. | Tampa, FL</h4>
-            <h5>Sep 2021 - Jul 2022</h5>
-            <p><em>Analyst</em></p>
-            <p>
-            <ul>
-              <li>Designed a simulation model in AnyLogic for a 10,000 person event egress at a $12B luxury resort, reducing
-                average egress time by 14% and wait time in the queue by 7%.</li>
-              <li>Identified and accurately addressed client needs by researching and initiating strategies to drive productive
-                resource allocation and thereby boost utilization by 5%.</li>
-              <li>Provided suitable and valid rationales to implement crowd management techniques and change operational
-                activities to control and eliminate plant-specific problems.</li>
-            </ul>
-            </p>
-          </div>
-          <div class="resume-item">
-            <h4>Graduate Teaching Assistant | New Brunswick, NJ</h4>
-            <h5>Sep 2020 - May 2021</h5>
-            <p><em>Rutgers University</em></p>
-            <p>
-            <ul>
-              <li>Designed and developed 10+ simulation models of manufacturing facilities, warehouses, call centers, and cafés.</li>
-              <li>Analyzed model results to develop creative solutions and evaluate the effectiveness of decisions to promote
-                learning of various supply chain concepts for a class of 30 students.</li>
-            </ul>
-            </p>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </section><!-- End Resume Section -->
-
-  <!-- ======= Services Section ======= -->
-  <section id="services" class="services">
-    <div class="container">
-
-      <div class="section-title">
-        <h2>Services</h2>
-        <p>My Services</p>
-      </div>
-
-      <div class="row">
-        <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
-          <div class="icon-box">
-            <div class="icon"><i class="bx bxl-dribbble"></i></div>
-            <h4><a href="">Lorem Ipsum</a></h4>
-            <p>Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi</p>
-          </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0">
-          <div class="icon-box">
-            <div class="icon"><i class="bx bx-file"></i></div>
-            <h4><a href="">Sed ut perspiciatis</a></h4>
-            <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p>
-          </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0">
-          <div class="icon-box">
-            <div class="icon"><i class="bx bx-tachometer"></i></div>
-            <h4><a href="">Magni Dolores</a></h4>
-            <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia</p>
-          </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4">
-          <div class="icon-box">
-            <div class="icon"><i class="bx bx-world"></i></div>
-            <h4><a href="">Nemo Enim</a></h4>
-            <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis</p>
-          </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4">
-          <div class="icon-box">
-            <div class="icon"><i class="bx bx-slideshow"></i></div>
-            <h4><a href="">Dele cardo</a></h4>
-            <p>Quis consequatur saepe eligendi voluptatem consequatur dolor consequuntur</p>
-          </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4">
-          <div class="icon-box">
-            <div class="icon"><i class="bx bx-arch"></i></div>
-            <h4><a href="">Divera don</a></h4>
-            <p>Modi nostrum vel laborum. Porro fugit error sit minus sapiente sit aspernatur</p>
-          </div>
-        </div>
-
-      </div>
-
-    </div>
-  </section><!-- End Services Section -->
-
-  <!-- ======= Portfolio Section ======= -->
-  <section id="portfolio" class="portfolio">
-    <div class="container">
-
-      <div class="section-title">
-        <h2>Portfolio</h2>
-        <p>My Works</p>
-      </div>
-
-      <div class="row">
-        <div class="col-lg-12 d-flex justify-content-center">
-          <ul id="portfolio-flters">
-            <li data-filter="*" class="filter-active">All</li>
-            <li data-filter=".filter-app">App</li>
-            <li data-filter=".filter-card">Card</li>
-            <li data-filter=".filter-web">Web</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="row portfolio-container">
-
-        <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-          <div class="portfolio-wrap">
-            <img src="assets/img/portfolio/portfolio-1.jpg" class="img-fluid" alt="">
-            <div class="portfolio-info">
-              <h4>App 1</h4>
-              <p>App</p>
-              <div class="portfolio-links">
-                <a href="assets/img/portfolio/portfolio-1.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="App 1"><i class="bx bx-plus"></i></a>
-                <a href="portfolio-details.html" data-gallery="portfolioDetailsGallery" data-glightbox="type: external" class="portfolio-details-lightbox" title="Portfolio Details"><i class="bx bx-link"></i></a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-          <div class="portfolio-wrap">
-            <img src="assets/img/portfolio/portfolio-2.jpg" class="img-fluid" alt="">
-            <div class="portfolio-info">
-              <h4>Web 3</h4>
-              <p>Web</p>
-              <div class="portfolio-links">
-                <a href="assets/img/portfolio/portfolio-2.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Web 3"><i class="bx bx-plus"></i></a>
-                <a href="portfolio-details.html" data-gallery="portfolioDetailsGallery" data-glightbox="type: external" class="portfolio-details-lightbox" title="Portfolio Details"><i class="bx bx-link"></i></a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-          <div class="portfolio-wrap">
-            <img src="assets/img/portfolio/portfolio-3.jpg" class="img-fluid" alt="">
-            <div class="portfolio-info">
-              <h4>App 2</h4>
-              <p>App</p>
-              <div class="portfolio-links">
-                <a href="assets/img/portfolio/portfolio-3.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="App 2"><i class="bx bx-plus"></i></a>
-                <a href="portfolio-details.html" data-gallery="portfolioDetailsGallery" data-glightbox="type: external" class="portfolio-details-lightbox" title="Portfolio Details"><i class="bx bx-link"></i></a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-          <div class="portfolio-wrap">
-            <img src="assets/img/portfolio/portfolio-4.jpg" class="img-fluid" alt="">
-            <div class="portfolio-info">
-              <h4>Card 2</h4>
-              <p>Card</p>
-              <div class="portfolio-links">
-                <a href="assets/img/portfolio/portfolio-4.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Card 2"><i class="bx bx-plus"></i></a>
-                <a href="portfolio-details.html" data-gallery="portfolioDetailsGallery" data-glightbox="type: external" class="portfolio-details-lightbox" title="Portfolio Details"><i class="bx bx-link"></i></a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-          <div class="portfolio-wrap">
-            <img src="assets/img/portfolio/portfolio-5.jpg" class="img-fluid" alt="">
-            <div class="portfolio-info">
-              <h4>Web 2</h4>
-              <p>Web</p>
-              <div class="portfolio-links">
-                <a href="assets/img/portfolio/portfolio-5.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Web 2"><i class="bx bx-plus"></i></a>
-                <a href="portfolio-details.html" data-gallery="portfolioDetailsGallery" data-glightbox="type: external" class="portfolio-details-lightbox" title="Portfolio Details"><i class="bx bx-link"></i></a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-          <div class="portfolio-wrap">
-            <img src="assets/img/portfolio/portfolio-6.jpg" class="img-fluid" alt="">
-            <div class="portfolio-info">
-              <h4>App 3</h4>
-              <p>App</p>
-              <div class="portfolio-links">
-                <a href="assets/img/portfolio/portfolio-6.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="App 3"><i class="bx bx-plus"></i></a>
-                <a href="portfolio-details.html" data-gallery="portfolioDetailsGallery" data-glightbox="type: external" class="portfolio-details-lightbox" title="Portfolio Details"><i class="bx bx-link"></i></a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-          <div class="portfolio-wrap">
-            <img src="assets/img/portfolio/portfolio-7.jpg" class="img-fluid" alt="">
-            <div class="portfolio-info">
-              <h4>Card 1</h4>
-              <p>Card</p>
-              <div class="portfolio-links">
-                <a href="assets/img/portfolio/portfolio-7.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Card 1"><i class="bx bx-plus"></i></a>
-                <a href="portfolio-details.html" data-gallery="portfolioDetailsGallery" data-glightbox="type: external" class="portfolio-details-lightbox" title="Portfolio Details"><i class="bx bx-link"></i></a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-          <div class="portfolio-wrap">
-            <img src="assets/img/portfolio/portfolio-8.jpg" class="img-fluid" alt="">
-            <div class="portfolio-info">
-              <h4>Card 3</h4>
-              <p>Card</p>
-              <div class="portfolio-links">
-                <a href="assets/img/portfolio/portfolio-8.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Card 3"><i class="bx bx-plus"></i></a>
-                <a href="portfolio-details.html" data-gallery="portfolioDetailsGallery" data-glightbox="type: external" class="portfolio-details-lightbox" title="Portfolio Details"><i class="bx bx-link"></i></a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-          <div class="portfolio-wrap">
-            <img src="assets/img/portfolio/portfolio-9.jpg" class="img-fluid" alt="">
-            <div class="portfolio-info">
-              <h4>Web 3</h4>
-              <p>Web</p>
-              <div class="portfolio-links">
-                <a href="assets/img/portfolio/portfolio-9.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Web 3"><i class="bx bx-plus"></i></a>
-                <a href="portfolio-details.html" data-gallery="portfolioDetailsGallery" data-glightbox="type: external" class="portfolio-details-lightbox" title="Portfolio Details"><i class="bx bx-link"></i></a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-    </div>
-  </section><!-- End Portfolio Section -->
-
-  <!-- ======= Contact Section ======= -->
-  <section id="contact" class="contact">
-    <div class="container">
-
-      <div class="section-title">
-        <h2>Contact</h2>
-        <p>Contact Me</p>
-      </div>
-
-      <div class="row mt-2">
-
-        <div class="col-md-6 d-flex align-items-stretch">
-          <div class="info-box">
-            <i class="bx bx-map"></i>
-            <h3>My Address</h3>
-            <p>Boston, MA 02210</p>
-          </div>
-        </div>
-
-        <div class="col-md-6 mt-4 mt-md-0 d-flex align-items-stretch">
-          <div class="info-box">
-            <i class="bx bx-share-alt"></i>
-            <h3>LinkedIn</h3>
-            <div class="social-links">
-              <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
-              <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
-              <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-              <a href="#" class="google-plus"><i class="bi bi-skype"></i></a>
-              <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-6 mt-4 d-flex align-items-stretch">
-          <div class="info-box">
-            <i class="bx bx-envelope"></i>
-            <h3>Email Me</h3>
-            <p>ua85@rutgers.edu</p>
-          </div>
-        </div>
-        <div class="col-md-6 mt-4 d-flex align-items-stretch">
-          <div class="info-box">
-            <i class="bx bx-phone-call"></i>
-            <h3>Call Me</h3>
-            <p>+1 848 234 8081</p>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </section><!-- End Contact Section -->
-
-  <div class="credits">
-    <!-- All the links in the footer should remain intact. -->
-    <!-- You can delete the links only if you purchased the pro version. -->
-    <!-- Licensing information: https://bootstrapmade.com/license/ -->
-    <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/personal-free-resume-bootstrap-template/ -->
-    <!-- Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a> -->
   </div>
 
-  <!-- Vendor JS Files -->
-  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
-  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-  <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
+  <div class="hero-social">
+    <a href="https://www.linkedin.com/in/aimensudhir" target="_blank" class="social-icon">
+      <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+    </a>
+    <a href="mailto:ua85@rutgers.edu" class="social-icon">
+      <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+    </a>
+  </div>
 
-  <!-- Template Main JS File -->
-  <script src="assets/js/main.js"></script>
+  <div class="hero-stats">
+    <div class="stat-item">
+      <span class="stat-num">4+</span>
+      <span class="stat-label">Years Experience</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">3</span>
+      <span class="stat-label">Degrees</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">$70B+</span>
+      <span class="stat-label">Client Scale</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">4.0</span>
+      <span class="stat-label">Current GPA</span>
+    </div>
+  </div>
+</section>
 
+<!-- ABOUT -->
+<section id="about" class="section">
+  <div class="section-header reveal">
+    <div class="section-tag">Who I Am</div>
+    <h2 class="section-title">Passionate about data,<br><span>driven by impact</span></h2>
+  </div>
+  <div class="about-grid">
+    <div class="about-text reveal">
+      <p>I've built my career at the intersection of <strong>data science, supply chain, and business consulting</strong> — working with some of the world's largest companies to turn complex data into decisions that matter.</p>
+      <p>From reducing transportation costs by 23% at a $3.6B nutrition company to cutting inventory by 20% for a $70B medtech firm, I bring both <strong>rigorous analytical thinking</strong> and a sharp eye for real-world business outcomes.</p>
+      <p>I'm currently pursuing an Executive M.S. in Data Science & Analytics at New England College while working full-time as a Data Scientist at SimWell, Inc. in Boston.</p>
+    </div>
+    <div class="about-cards reveal">
+      <div class="about-card">
+        <div class="about-card-icon">📊</div>
+        <div class="about-card-title">Predictive Modeling</div>
+        <div class="about-card-desc">Statistical models that forecast demand, optimize inventory, and reduce waste at scale.</div>
+      </div>
+      <div class="about-card">
+        <div class="about-card-icon">🔗</div>
+        <div class="about-card-title">Supply Chain</div>
+        <div class="about-card-desc">End-to-end logistics network design, route optimization, and distribution strategy.</div>
+      </div>
+      <div class="about-card">
+        <div class="about-card-icon">⚙️</div>
+        <div class="about-card-title">Data Engineering</div>
+        <div class="about-card-desc">Scalable pipelines with Kedro & Python for high-volume inventory data processing.</div>
+      </div>
+      <div class="about-card">
+        <div class="about-card-icon">📈</div>
+        <div class="about-card-title">Visualization</div>
+        <div class="about-card-desc">Power BI & Tableau dashboards that empower stakeholders to work independently.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience" class="section">
+  <div class="section-header reveal">
+    <div class="section-tag">Career</div>
+    <h2 class="section-title">Where I've <span>worked</span></h2>
+  </div>
+  <div class="timeline">
+
+    <div class="timeline-item reveal">
+      <div class="timeline-dot"></div>
+      <div class="timeline-date">Nov 2023 — Present</div>
+      <div class="timeline-company">SimWell, Inc.</div>
+      <div class="timeline-meta"><span>Data Scientist</span> Boston, MA</div>
+      <ul class="timeline-bullets">
+        <li>Developed advanced statistical predictive models optimizing inventory for a $3.6B global health and nutrition company — resulting in a <strong>23% reduction</strong> in transportation and facility costs.</li>
+        <li>Transitioned inventory management from "Hub and Spoke" to a more efficient "Factory-to-DC" model in collaboration with cross-functional stakeholders.</li>
+        <li>Engineered a comprehensive data pipeline using <strong>Kedro and Python</strong> for processing large-scale inventory and supply chain data.</li>
+        <li>Performed complex analyses to determine optimal distribution center locations across <strong>10+ future scenarios</strong> using mathematical modeling techniques.</li>
+        <li>Built interactive <strong>Power BI dashboards</strong> reducing analysis turnaround from ~2 months to 2–4 weeks.</li>
+      </ul>
+    </div>
+
+    <div class="timeline-item reveal">
+      <div class="timeline-dot"></div>
+      <div class="timeline-date">Aug 2022 — Oct 2023</div>
+      <div class="timeline-company">Boston Consulting Group (BCG)</div>
+      <div class="timeline-meta"><span>Data Scientist</span> Boston, MA</div>
+      <ul class="timeline-bullets">
+        <li>Built a multi-echelon inventory optimization model for a <strong>$70B medical technology company</strong> — achieving a 20% inventory reduction.</li>
+        <li>Designed an end-to-end logistics network optimization model for a $15B mining company, improving delivery times by <strong>4%</strong> and reducing congestion.</li>
+        <li>Defined KPIs, evaluated hypotheses, and communicated findings through data visualization to executive stakeholders.</li>
+        <li>Developed a proof-of-concept model optimizing crane and AGV allocation in warehouse operations without disruption.</li>
+        <li>Mentored <strong>20+ data scientists</strong> on predictive modeling and optimization techniques in Python.</li>
+      </ul>
+    </div>
+
+    <div class="timeline-item reveal">
+      <div class="timeline-dot"></div>
+      <div class="timeline-date">Sep 2021 — Jul 2022</div>
+      <div class="timeline-company">Integrated Insight, Inc.</div>
+      <div class="timeline-meta"><span>Data Analyst</span> Tampa, FL</div>
+      <ul class="timeline-bullets">
+        <li>Designed a predictive pedestrian egress model for a 10,000-person event at a $12B luxury resort, cutting average egress time by <strong>14%</strong> and queue wait times by 7%.</li>
+        <li>Collaborated with a $75M healthcare education client — cleaned 10+ datasets and identified course enrollment improvement opportunities.</li>
+        <li>Implemented personalized course recommendations resulting in a <strong>10% increase in engagement</strong> and 15% boost in completion rates.</li>
+      </ul>
+    </div>
+
+    <div class="timeline-item reveal">
+      <div class="timeline-dot"></div>
+      <div class="timeline-date">Sep 2020 — May 2021</div>
+      <div class="timeline-company">Rutgers University</div>
+      <div class="timeline-meta"><span>Graduate Teaching Assistant</span> New Brunswick, NJ</div>
+      <ul class="timeline-bullets">
+        <li>Designed and developed <strong>10+ simulation models</strong> of manufacturing facilities, warehouses, call centers, and cafés.</li>
+        <li>Supported supply chain education for a class of 30 students by analyzing model results and developing creative problem-solving approaches.</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education" class="section">
+  <div class="section-header reveal">
+    <div class="section-tag">Academic Background</div>
+    <h2 class="section-title">Education &amp; <span>Credentials</span></h2>
+  </div>
+  <div class="edu-grid">
+    <div class="edu-card reveal">
+      <div class="edu-year">Jul 2023 — Present</div>
+      <div class="edu-school">New England College</div>
+      <div class="edu-degree">Executive M.S. — Data Science and Analytics · Henniker, NH</div>
+      <div class="edu-gpa">GPA 4.0 / 4.0</div>
+      <div class="edu-courses">Data Science Tools · SQL for Data Analytics · Data Mining & Statistical Modeling · Machine Learning</div>
+    </div>
+    <div class="edu-card reveal">
+      <div class="edu-year">Sep 2019 — May 2021</div>
+      <div class="edu-school">Rutgers University</div>
+      <div class="edu-degree">M.S. — Industrial & Systems Engineering · New Brunswick, NJ</div>
+      <div class="edu-gpa">GPA 3.8 / 4.0</div>
+      <div class="edu-courses">Operations Research · Supply Chain Management · Enterprise Resource Planning</div>
+    </div>
+    <div class="edu-card reveal">
+      <div class="edu-year">Aug 2015 — May 2019</div>
+      <div class="edu-school">Veermata Jijabai Technological Institute</div>
+      <div class="edu-degree">B.Tech. — Production Engineering · Mumbai, India</div>
+      <div class="edu-gpa">GPA 7.5 / 10.0</div>
+      <div class="edu-courses">Simulation in Production Systems · Data Analytics in Engineering · Supply Chain Engineering · Project Management</div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" class="section">
+  <div class="section-header reveal">
+    <div class="section-tag">Technical Toolkit</div>
+    <h2 class="section-title">Skills &amp; <span>Technologies</span></h2>
+  </div>
+  <div class="skills-layout">
+    <div class="skill-card reveal">
+      <div class="skill-card-header">
+        <div class="skill-icon">💻</div>
+        <div class="skill-card-title">Languages & Packages</div>
+      </div>
+      <div class="skill-tags">
+        <span class="skill-tag">Python</span><span class="skill-tag">SQL</span><span class="skill-tag">R</span>
+        <span class="skill-tag">Java</span><span class="skill-tag">GAMS</span><span class="skill-tag">VBA</span>
+        <span class="skill-tag">Matlab</span><span class="skill-tag">Scikit-learn</span>
+        <span class="skill-tag">Matplotlib</span><span class="skill-tag">Seaborn</span>
+      </div>
+    </div>
+    <div class="skill-card reveal">
+      <div class="skill-card-header">
+        <div class="skill-icon">🛠️</div>
+        <div class="skill-card-title">Tools & Software</div>
+      </div>
+      <div class="skill-tags">
+        <span class="skill-tag">Power BI</span><span class="skill-tag">Tableau</span>
+        <span class="skill-tag">Kedro</span><span class="skill-tag">Alteryx</span>
+        <span class="skill-tag">AnyLogic</span><span class="skill-tag">AnyLogistix</span>
+        <span class="skill-tag">Excel</span><span class="skill-tag">MS Project</span><span class="skill-tag">Visio</span>
+      </div>
+    </div>
+    <div class="skill-card reveal">
+      <div class="skill-card-header">
+        <div class="skill-icon">🧠</div>
+        <div class="skill-card-title">Data Science</div>
+      </div>
+      <div class="skill-tags">
+        <span class="skill-tag">Machine Learning</span><span class="skill-tag">Predictive Modeling</span>
+        <span class="skill-tag">Statistical Analysis</span><span class="skill-tag">Hypothesis Testing</span>
+        <span class="skill-tag">A/B Testing</span><span class="skill-tag">ETL Processes</span>
+        <span class="skill-tag">Data Mining</span><span class="skill-tag">Forecasting</span>
+      </div>
+    </div>
+    <div class="skill-card reveal">
+      <div class="skill-card-header">
+        <div class="skill-icon">🔗</div>
+        <div class="skill-card-title">Operations & Supply Chain</div>
+      </div>
+      <div class="skill-tags">
+        <span class="skill-tag">Inventory Optimization</span><span class="skill-tag">Demand Planning</span>
+        <span class="skill-tag">Supply Planning</span><span class="skill-tag">Logistics Networks</span>
+        <span class="skill-tag">Linear Programming</span><span class="skill-tag">Dynamic Programming</span>
+        <span class="skill-tag">Warehouse Management</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="section">
+  <div class="section-header reveal">
+    <div class="section-tag">Get In Touch</div>
+    <h2 class="section-title">Let's <span>connect</span></h2>
+  </div>
+  <div class="contact-layout">
+    <div class="contact-info reveal">
+      <p>I'm open to new opportunities, collaborations, and conversations. Whether you have a role, a project, or just want to talk data science — reach out!</p>
+      <div class="contact-items">
+        <div class="contact-row">
+          <div class="contact-icon-wrap">✉️</div>
+          <div><div class="contact-label">Email</div><div class="contact-val"><a href="mailto:ua85@rutgers.edu">ua85@rutgers.edu</a></div></div>
+        </div>
+        <div class="contact-row">
+          <div class="contact-icon-wrap">📞</div>
+          <div><div class="contact-label">Phone</div><div class="contact-val"><a href="tel:8482348081">(848) 234-8081</a></div></div>
+        </div>
+        <div class="contact-row">
+          <div class="contact-icon-wrap">🔗</div>
+          <div><div class="contact-label">LinkedIn</div><div class="contact-val"><a href="https://www.linkedin.com/in/aimensudhir" target="_blank">linkedin.com/in/aimensudhir</a></div></div>
+        </div>
+        <div class="contact-row">
+          <div class="contact-icon-wrap">📍</div>
+          <div><div class="contact-label">Location</div><div class="contact-val">Boston, MA 02210</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="contact-interests reveal">
+      <h3>Outside of Work</h3>
+      <div class="interest-items">
+        <div class="interest-row"><span class="interest-emoji">⚽</span> Playing soccer</div>
+        <div class="interest-row"><span class="interest-emoji">✈️</span> Exploring new cultures through travel</div>
+        <div class="interest-row"><span class="interest-emoji">🏋️</span> Working out & staying active</div>
+        <div class="interest-row"><span class="interest-emoji">🥾</span> Hiking</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>© 2025 Aimen Sudhir · Boston, MA</span>
+  <span>Data Scientist · Open to Opportunities</span>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 60);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => { if (window.scrollY >= s.offsetTop - 120) current = s.id; });
+    navLinks.forEach(a => {
+      a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+    });
+  });
+</script>
 </body>
-
 </html>
