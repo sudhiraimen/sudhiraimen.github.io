@@ -1,838 +1,258 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Aimen Sudhir — Data Scientist</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
-<style>
-:root {
-  --bg: #0a0d14;
-  --bg2: #0f1320;
-  --bg3: #141928;
-  --card: #131826;
-  --border: rgba(255,255,255,0.07);
-  --text: #e8eaf0;
-  --muted: #7a8099;
-  --green: #00e5a0;
-  --green-dim: rgba(0,229,160,0.10);
-  --green-glow: rgba(0,229,160,0.25);
-}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aimen Sudhir — Data Scientist</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
 
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
+    <style>
+        :root {
+            --bg: #05070a;
+            --bg-card: #0f1219;
+            --accent: #00e5a0;
+            --accent-soft: rgba(0, 229, 160, 0.1);
+            --text-main: #f0f2f5;
+            --text-muted: #8e95ab;
+            --border: rgba(255, 255, 255, 0.08);
+            --font-head: 'Bricolage Grotesque', sans-serif;
+            --font-body: 'Inter', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
 
-body {
-  background: var(--bg);
-  color: var(--text);
-  font-family: 'Outfit', sans-serif;
-  font-size: 15px;
-  line-height: 1.7;
-  overflow-x: hidden;
-}
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
 
-::-webkit-scrollbar { width: 5px; }
-::-webkit-scrollbar-track { background: var(--bg); }
-::-webkit-scrollbar-thumb { background: var(--green); border-radius: 3px; }
+        body {
+            background-color: var(--bg);
+            color: var(--text-main);
+            font-family: var(--font-body);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
 
-/* NAV */
-nav {
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  z-index: 100;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 18px 60px;
-  background: rgba(10,13,20,0.88);
-  backdrop-filter: blur(16px);
-  border-bottom: 1px solid var(--border);
-}
-.nav-logo {
-  font-family: 'Syne', sans-serif;
-  font-weight: 800;
-  font-size: 20px;
-  letter-spacing: -0.02em;
-  color: var(--text);
-  text-decoration: none;
-}
-.nav-logo span { color: var(--green); }
-.nav-links { display: flex; gap: 36px; list-style: none; }
-.nav-links a {
-  color: var(--muted);
-  text-decoration: none;
-  font-size: 14px;
-  font-weight: 500;
-  letter-spacing: 0.02em;
-  transition: color 0.2s;
-  position: relative;
-  padding-bottom: 4px;
-}
-.nav-links a::after {
-  content: '';
-  position: absolute;
-  bottom: 0; left: 0;
-  width: 0; height: 2px;
-  background: var(--green);
-  transition: width 0.25s ease;
-}
-.nav-links a:hover { color: var(--text); }
-.nav-links a:hover::after { width: 100%; }
-.nav-links a.active { color: var(--green); }
-.nav-links a.active::after { width: 100%; }
+        /* --- NAVIGATION --- */
+        nav {
+            position: fixed;
+            top: 0; width: 100%;
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 1.5rem 10%;
+            background: rgba(5, 7, 10, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+        }
+        .logo { font-family: var(--font-head); font-size: 1.5rem; font-weight: 800; text-decoration: none; color: var(--text-main); }
+        .logo span { color: var(--accent); }
+        .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+        .nav-links a { text-decoration: none; color: var(--text-muted); font-size: 0.9rem; font-weight: 500; transition: 0.3s; }
+        .nav-links a:hover { color: var(--accent); }
 
-/* HERO */
-#home {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  padding: 120px 60px 160px;
-  position: relative;
-  overflow: hidden;
-}
-#home::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image:
-    linear-gradient(var(--border) 1px, transparent 1px),
-    linear-gradient(90deg, var(--border) 1px, transparent 1px);
-  background-size: 60px 60px;
-  mask-image: radial-gradient(ellipse 80% 80% at 40% 50%, black 20%, transparent 100%);
-  animation: gridPulse 8s ease-in-out infinite;
-}
-@keyframes gridPulse {
-  0%,100% { opacity: 0.35; }
-  50% { opacity: 0.65; }
-}
-#home::after {
-  content: '';
-  position: absolute;
-  width: 700px; height: 700px;
-  background: radial-gradient(circle, rgba(0,229,160,0.07) 0%, transparent 70%);
-  top: -150px; right: -150px;
-  pointer-events: none;
-}
-.hero-content {
-  position: relative;
-  z-index: 2;
-  max-width: 780px;
-}
-.hero-tag {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: var(--green-dim);
-  border: 1px solid rgba(0,229,160,0.28);
-  color: var(--green);
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  padding: 6px 14px;
-  border-radius: 100px;
-  margin-bottom: 28px;
-  animation: fadeSlideUp 0.6s ease both;
-}
-.hero-tag::before {
-  content: '';
-  width: 7px; height: 7px;
-  background: var(--green);
-  border-radius: 50%;
-  animation: blink 2s ease infinite;
-}
-@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
-.hero-name {
-  font-family: 'Syne', sans-serif;
-  font-weight: 800;
-  font-size: clamp(52px, 8vw, 90px);
-  letter-spacing: -0.04em;
-  line-height: 1.0;
-  margin-bottom: 20px;
-  animation: fadeSlideUp 0.6s 0.1s ease both;
-}
-.hero-name span { color: var(--green); }
-.hero-sub {
-  font-size: clamp(15px, 2.2vw, 19px);
-  color: var(--muted);
-  font-weight: 300;
-  max-width: 520px;
-  margin-bottom: 40px;
-  animation: fadeSlideUp 0.6s 0.2s ease both;
-  line-height: 1.7;
-}
-.hero-actions {
-  display: flex;
-  gap: 14px;
-  flex-wrap: wrap;
-  animation: fadeSlideUp 0.6s 0.3s ease both;
-}
-.btn-primary {
-  background: var(--green);
-  color: #0a0d14;
-  font-family: 'Outfit', sans-serif;
-  font-weight: 600;
-  font-size: 14px;
-  padding: 13px 30px;
-  border-radius: 4px;
-  text-decoration: none;
-  letter-spacing: 0.02em;
-  transition: transform 0.2s, box-shadow 0.2s;
-}
-.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 28px var(--green-glow); }
-.btn-ghost {
-  background: transparent;
-  color: var(--text);
-  font-family: 'Outfit', sans-serif;
-  font-weight: 500;
-  font-size: 14px;
-  padding: 13px 30px;
-  border-radius: 4px;
-  text-decoration: none;
-  letter-spacing: 0.02em;
-  border: 1px solid var(--border);
-  transition: border-color 0.2s, color 0.2s;
-}
-.btn-ghost:hover { border-color: var(--green); color: var(--green); }
+        /* --- HERO SECTION --- */
+        #home {
+            height: 100vh;
+            display: flex; flex-direction: column; justify-content: center;
+            padding: 0 10%;
+            background: radial-gradient(circle at 80% 20%, var(--accent-soft), transparent 40%);
+        }
+        .badge {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--accent);
+            background: var(--accent-soft);
+            padding: 6px 14px;
+            border-radius: 100px;
+            width: fit-content;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(0, 229, 160, 0.2);
+        }
+        h1 {
+            font-family: var(--font-head);
+            font-size: clamp(3.5rem, 8vw, 6rem);
+            line-height: 0.95;
+            letter-spacing: -0.04em;
+            margin-bottom: 1.5rem;
+        }
+        h1 span { color: var(--accent); }
+        .hero-sub {
+            max-width: 600px;
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            margin-bottom: 2.5rem;
+        }
 
-.hero-social {
-  position: absolute;
-  right: 60px;
-  top: 50%;
-  transform: translateY(-50%);
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  z-index: 2;
-  animation: fadeSlideUp 0.6s 0.4s ease both;
-}
-.social-icon {
-  width: 42px; height: 42px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid var(--border);
-  border-radius: 50%;
-  color: var(--muted);
-  text-decoration: none;
-  transition: border-color 0.2s, color 0.2s, background 0.2s;
-}
-.social-icon:hover { border-color: var(--green); color: var(--green); background: var(--green-dim); }
+        /* --- BUTTONS --- */
+        .btn-group { display: flex; gap: 1rem; }
+        .btn {
+            padding: 12px 28px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: 0.3s;
+        }
+        .btn-primary { background: var(--accent); color: #000; }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(0, 229, 160, 0.2); }
+        .btn-secondary { border: 1px solid var(--border); color: var(--text-main); }
+        .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
 
-.hero-stats {
-  position: absolute;
-  bottom: 60px;
-  left: 60px;
-  display: flex;
-  gap: 52px;
-  z-index: 2;
-  animation: fadeSlideUp 0.6s 0.5s ease both;
-}
-.stat-item { display: flex; flex-direction: column; gap: 2px; }
-.stat-num {
-  font-family: 'Syne', sans-serif;
-  font-weight: 800;
-  font-size: 30px;
-  color: var(--green);
-  letter-spacing: -0.03em;
-  line-height: 1;
-}
-.stat-label { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.09em; }
+        /* --- STATS BAR --- */
+        .stats-bar {
+            display: flex; gap: 4rem; margin-top: 5rem;
+            border-top: 1px solid var(--border); padding-top: 2rem;
+        }
+        .stat-val { font-family: var(--font-head); font-size: 2rem; display: block; color: var(--accent); }
+        .stat-label { font-size: 0.75rem; text-transform: uppercase; color: var(--text-muted); letter-spacing: 0.1em; }
 
-@keyframes fadeSlideUp {
-  from { opacity: 0; transform: translateY(24px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
+        /* --- SECTIONS --- */
+        section { padding: 100px 10%; }
+        .section-title { font-family: var(--font-head); font-size: 2.5rem; margin-bottom: 3rem; letter-spacing: -0.02em; }
+        .section-title span { color: var(--accent); }
 
-/* SECTIONS */
-.section { padding: 96px 60px; position: relative; }
-.section:nth-child(even) { background: var(--bg2); }
+        /* --- EXPERIENCE TIMELINE --- */
+        .exp-item {
+            display: grid; grid-template-columns: 250px 1fr;
+            margin-bottom: 4rem; padding-bottom: 4rem;
+            border-bottom: 1px solid var(--border);
+        }
+        .exp-date { font-family: var(--font-mono); color: var(--accent); font-size: 0.85rem; }
+        .exp-company { font-family: var(--font-head); font-size: 1.5rem; margin-bottom: 0.5rem; }
+        .exp-role { color: var(--text-muted); margin-bottom: 1.5rem; display: block; font-weight: 500; }
+        .exp-bullets { list-style: none; }
+        .exp-bullets li { margin-bottom: 0.8rem; position: relative; padding-left: 20px; color: #ced4e0; }
+        .exp-bullets li::before { content: "→"; position: absolute; left: 0; color: var(--accent); }
 
-.section-header { margin-bottom: 56px; }
-.section-tag {
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--green);
-  margin-bottom: 10px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-.section-tag::before { content: ''; width: 24px; height: 2px; background: var(--green); }
-.section-title {
-  font-family: 'Syne', sans-serif;
-  font-weight: 800;
-  font-size: clamp(26px, 4vw, 40px);
-  letter-spacing: -0.03em;
-  line-height: 1.1;
-}
-.section-title span { color: var(--green); }
+        /* --- SKILLS GRID --- */
+        .skills-grid {
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        .skill-card {
+            background: var(--bg-card);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            transition: 0.3s;
+        }
+        .skill-card:hover { border-color: var(--accent); }
+        .skill-card h3 { font-family: var(--font-head); margin-bottom: 1rem; font-size: 1.1rem; }
+        .tag-container { display: flex; flex-wrap: wrap; gap: 8px; }
+        .tag {
+            background: rgba(255,255,255,0.05);
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            border: 1px solid var(--border);
+        }
 
-/* ABOUT */
-.about-grid {
-  display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
-  gap: 72px;
-  align-items: start;
-}
-.about-text p {
-  color: var(--muted);
-  font-size: 15px;
-  line-height: 1.85;
-  margin-bottom: 18px;
-}
-.about-text p strong { color: var(--text); font-weight: 600; }
-.about-cards {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 14px;
-}
-.about-card {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 22px 18px;
-  transition: border-color 0.2s, transform 0.2s;
-}
-.about-card:hover { border-color: rgba(0,229,160,0.35); transform: translateY(-3px); }
-.about-card-icon { font-size: 20px; margin-bottom: 10px; }
-.about-card-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 14px; margin-bottom: 5px; }
-.about-card-desc { font-size: 12px; color: var(--muted); line-height: 1.5; }
+        /* --- FOOTER --- */
+        footer {
+            padding: 4rem 10%;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
 
-/* EXPERIENCE */
-.timeline { position: relative; max-width: 820px; }
-.timeline::before {
-  content: '';
-  position: absolute;
-  left: 0; top: 10px; bottom: 0;
-  width: 1px;
-  background: linear-gradient(to bottom, var(--green) 60%, transparent);
-}
-.timeline-item {
-  padding-left: 44px;
-  padding-bottom: 52px;
-  position: relative;
-}
-.timeline-item:last-child { padding-bottom: 0; }
-.timeline-dot {
-  position: absolute;
-  left: -6px; top: 6px;
-  width: 13px; height: 13px;
-  background: var(--bg);
-  border: 2px solid var(--green);
-  border-radius: 50%;
-  transition: background 0.2s;
-}
-.timeline-item:hover .timeline-dot { background: var(--green); }
-.timeline-date {
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--green);
-  margin-bottom: 6px;
-}
-.timeline-company {
-  font-family: 'Syne', sans-serif;
-  font-weight: 700;
-  font-size: 20px;
-  letter-spacing: -0.02em;
-  margin-bottom: 2px;
-}
-.timeline-meta {
-  font-size: 13px;
-  color: var(--muted);
-  margin-bottom: 16px;
-}
-.timeline-meta span {
-  display: inline-block;
-  margin-right: 14px;
-  font-weight: 500;
-  color: rgba(0,229,160,0.75);
-}
-.timeline-bullets { list-style: none; }
-.timeline-bullets li {
-  position: relative;
-  padding-left: 16px;
-  font-size: 14px;
-  color: #9ba0b4;
-  line-height: 1.75;
-  margin-bottom: 6px;
-}
-.timeline-bullets li::before {
-  content: '▹';
-  position: absolute;
-  left: 0;
-  color: var(--green);
-  font-size: 11px;
-  top: 3px;
-}
-.timeline-bullets li strong { color: var(--text); font-weight: 600; }
-
-/* EDUCATION */
-.edu-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
-  gap: 18px;
-  max-width: 1000px;
-}
-.edu-card {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 28px 24px;
-  transition: border-color 0.2s, transform 0.2s;
-  position: relative;
-  overflow: hidden;
-}
-.edu-card::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 3px;
-  background: var(--green);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.3s ease;
-}
-.edu-card:hover::before { transform: scaleX(1); }
-.edu-card:hover { border-color: rgba(0,229,160,0.3); transform: translateY(-4px); }
-.edu-year { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--green); margin-bottom: 8px; }
-.edu-school { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 17px; line-height: 1.3; margin-bottom: 6px; }
-.edu-degree { font-size: 13px; color: var(--muted); margin-bottom: 14px; line-height: 1.5; }
-.edu-gpa {
-  display: inline-block;
-  background: var(--green-dim);
-  border: 1px solid rgba(0,229,160,0.25);
-  color: var(--green);
-  font-size: 12px;
-  font-weight: 600;
-  padding: 3px 10px;
-  border-radius: 100px;
-  margin-bottom: 12px;
-}
-.edu-courses { font-size: 12px; color: var(--muted); line-height: 1.6; }
-
-/* SKILLS */
-.skills-layout {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 18px;
-  max-width: 1000px;
-}
-.skill-card {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 26px;
-  transition: border-color 0.2s;
-}
-.skill-card:hover { border-color: rgba(0,229,160,0.3); }
-.skill-card-header { display: flex; align-items: center; gap: 12px; margin-bottom: 18px; }
-.skill-icon {
-  width: 36px; height: 36px;
-  background: var(--green-dim);
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 17px;
-}
-.skill-card-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 14px; }
-.skill-tags { display: flex; flex-wrap: wrap; gap: 6px; }
-.skill-tag {
-  font-size: 12px;
-  font-weight: 500;
-  padding: 4px 11px;
-  background: rgba(255,255,255,0.04);
-  border: 1px solid var(--border);
-  border-radius: 4px;
-  color: #9ba0b4;
-  transition: background 0.2s, border-color 0.2s, color 0.2s;
-  cursor: default;
-}
-.skill-tag:hover { background: var(--green-dim); border-color: rgba(0,229,160,0.4); color: var(--green); }
-
-/* CONTACT */
-.contact-layout {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 72px;
-  max-width: 880px;
-}
-.contact-info p { color: var(--muted); font-size: 15px; line-height: 1.85; margin-bottom: 32px; }
-.contact-items { display: flex; flex-direction: column; gap: 18px; }
-.contact-row { display: flex; align-items: center; gap: 16px; }
-.contact-icon-wrap {
-  width: 42px; height: 42px;
-  background: var(--green-dim);
-  border: 1px solid rgba(0,229,160,0.2);
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  font-size: 17px;
-}
-.contact-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); }
-.contact-val { font-size: 14px; font-weight: 500; color: var(--text); }
-.contact-val a { color: var(--text); text-decoration: none; transition: color 0.2s; }
-.contact-val a:hover { color: var(--green); }
-
-.contact-interests {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 30px;
-}
-.contact-interests h3 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 16px; margin-bottom: 20px; }
-.interest-items { display: flex; flex-direction: column; gap: 16px; }
-.interest-row { display: flex; align-items: center; gap: 14px; font-size: 14px; color: var(--muted); }
-.interest-emoji { font-size: 20px; }
-
-/* FOOTER */
-footer {
-  background: var(--bg);
-  border-top: 1px solid var(--border);
-  padding: 26px 60px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 13px;
-  color: var(--muted);
-}
-
-/* SCROLL REVEAL */
-.reveal {
-  opacity: 0;
-  transform: translateY(28px);
-  transition: opacity 0.55s ease, transform 0.55s ease;
-}
-.reveal.visible { opacity: 1; transform: none; }
-
-/* RESPONSIVE */
-@media (max-width: 820px) {
-  nav { padding: 16px 24px; }
-  .nav-links { display: none; }
-  #home, .section { padding-left: 24px; padding-right: 24px; }
-  .hero-social { display: none; }
-  .hero-stats { bottom: 28px; left: 24px; gap: 28px; flex-wrap: wrap; }
-  .about-grid, .contact-layout { grid-template-columns: 1fr; gap: 40px; }
-  footer { flex-direction: column; gap: 8px; text-align: center; }
-}
-</style>
+        /* --- RESPONSIVE --- */
+        @media (max-width: 900px) {
+            .exp-item { grid-template-columns: 1fr; gap: 1rem; }
+            .nav-links { display: none; }
+            h1 { font-size: 3.5rem; }
+            .stats-bar { gap: 2rem; flex-wrap: wrap; }
+        }
+    </style>
 </head>
 <body>
 
-<nav>
-  <a href="#home" class="nav-logo">Aimen<span>.</span></a>
-  <ul class="nav-links">
-    <li><a href="#home">Home</a></li>
-    <li><a href="#about">About</a></li>
-    <li><a href="#experience">Experience</a></li>
-    <li><a href="#education">Education</a></li>
-    <li><a href="#skills">Skills</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
-</nav>
+    <nav>
+        <a href="#" class="logo">Aimen<span>.</span></a>
+        <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
 
-<!-- HERO -->
-<section id="home">
-  <div class="hero-content">
-    <div class="hero-tag">Available for opportunities</div>
-    <h1 class="hero-name">Aimen<br><span>Sudhir</span></h1>
-    <p class="hero-sub">Data Scientist specializing in supply chain optimization, predictive modeling, and logistics analytics — based in Boston, MA.</p>
-    <div class="hero-actions">
-      <a href="#experience" class="btn-primary">View My Work</a>
-      <a href="#contact" class="btn-ghost">Get In Touch</a>
-    </div>
-  </div>
-
-  <div class="hero-social">
-    <a href="https://www.linkedin.com/in/aimensudhir" target="_blank" class="social-icon">
-      <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
-    </a>
-    <a href="mailto:ua85@rutgers.edu" class="social-icon">
-      <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-    </a>
-  </div>
-
-  <div class="hero-stats">
-    <div class="stat-item">
-      <span class="stat-num">4+</span>
-      <span class="stat-label">Years Experience</span>
-    </div>
-    <div class="stat-item">
-      <span class="stat-num">3</span>
-      <span class="stat-label">Degrees</span>
-    </div>
-    <div class="stat-item">
-      <span class="stat-num">$70B+</span>
-      <span class="stat-label">Client Scale</span>
-    </div>
-    <div class="stat-item">
-      <span class="stat-num">4.0</span>
-      <span class="stat-label">Current GPA</span>
-    </div>
-  </div>
-</section>
-
-<!-- ABOUT -->
-<section id="about" class="section">
-  <div class="section-header reveal">
-    <div class="section-tag">Who I Am</div>
-    <h2 class="section-title">Passionate about data,<br><span>driven by impact</span></h2>
-  </div>
-  <div class="about-grid">
-    <div class="about-text reveal">
-      <p>I've built my career at the intersection of <strong>data science, supply chain, and business consulting</strong> — working with some of the world's largest companies to turn complex data into decisions that matter.</p>
-      <p>From reducing transportation costs by 23% at a $3.6B nutrition company to cutting inventory by 20% for a $70B medtech firm, I bring both <strong>rigorous analytical thinking</strong> and a sharp eye for real-world business outcomes.</p>
-      <p>I'm currently pursuing an Executive M.S. in Data Science & Analytics at New England College while working full-time as a Data Scientist at SimWell, Inc. in Boston.</p>
-    </div>
-    <div class="about-cards reveal">
-      <div class="about-card">
-        <div class="about-card-icon">📊</div>
-        <div class="about-card-title">Predictive Modeling</div>
-        <div class="about-card-desc">Statistical models that forecast demand, optimize inventory, and reduce waste at scale.</div>
-      </div>
-      <div class="about-card">
-        <div class="about-card-icon">🔗</div>
-        <div class="about-card-title">Supply Chain</div>
-        <div class="about-card-desc">End-to-end logistics network design, route optimization, and distribution strategy.</div>
-      </div>
-      <div class="about-card">
-        <div class="about-card-icon">⚙️</div>
-        <div class="about-card-title">Data Engineering</div>
-        <div class="about-card-desc">Scalable pipelines with Kedro & Python for high-volume inventory data processing.</div>
-      </div>
-      <div class="about-card">
-        <div class="about-card-icon">📈</div>
-        <div class="about-card-title">Visualization</div>
-        <div class="about-card-desc">Power BI & Tableau dashboards that empower stakeholders to work independently.</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- EXPERIENCE -->
-<section id="experience" class="section">
-  <div class="section-header reveal">
-    <div class="section-tag">Career</div>
-    <h2 class="section-title">Where I've <span>worked</span></h2>
-  </div>
-  <div class="timeline">
-
-    <div class="timeline-item reveal">
-      <div class="timeline-dot"></div>
-      <div class="timeline-date">Nov 2023 — Present</div>
-      <div class="timeline-company">SimWell, Inc.</div>
-      <div class="timeline-meta"><span>Data Scientist</span> Boston, MA</div>
-      <ul class="timeline-bullets">
-        <li>Developed advanced statistical predictive models optimizing inventory for a $3.6B global health and nutrition company — resulting in a <strong>23% reduction</strong> in transportation and facility costs.</li>
-        <li>Transitioned inventory management from "Hub and Spoke" to a more efficient "Factory-to-DC" model in collaboration with cross-functional stakeholders.</li>
-        <li>Engineered a comprehensive data pipeline using <strong>Kedro and Python</strong> for processing large-scale inventory and supply chain data.</li>
-        <li>Performed complex analyses to determine optimal distribution center locations across <strong>10+ future scenarios</strong> using mathematical modeling techniques.</li>
-        <li>Built interactive <strong>Power BI dashboards</strong> reducing analysis turnaround from ~2 months to 2–4 weeks.</li>
-      </ul>
-    </div>
-
-    <div class="timeline-item reveal">
-      <div class="timeline-dot"></div>
-      <div class="timeline-date">Aug 2022 — Oct 2023</div>
-      <div class="timeline-company">Boston Consulting Group (BCG)</div>
-      <div class="timeline-meta"><span>Data Scientist</span> Boston, MA</div>
-      <ul class="timeline-bullets">
-        <li>Built a multi-echelon inventory optimization model for a <strong>$70B medical technology company</strong> — achieving a 20% inventory reduction.</li>
-        <li>Designed an end-to-end logistics network optimization model for a $15B mining company, improving delivery times by <strong>4%</strong> and reducing congestion.</li>
-        <li>Defined KPIs, evaluated hypotheses, and communicated findings through data visualization to executive stakeholders.</li>
-        <li>Developed a proof-of-concept model optimizing crane and AGV allocation in warehouse operations without disruption.</li>
-        <li>Mentored <strong>20+ data scientists</strong> on predictive modeling and optimization techniques in Python.</li>
-      </ul>
-    </div>
-
-    <div class="timeline-item reveal">
-      <div class="timeline-dot"></div>
-      <div class="timeline-date">Sep 2021 — Jul 2022</div>
-      <div class="timeline-company">Integrated Insight, Inc.</div>
-      <div class="timeline-meta"><span>Data Analyst</span> Tampa, FL</div>
-      <ul class="timeline-bullets">
-        <li>Designed a predictive pedestrian egress model for a 10,000-person event at a $12B luxury resort, cutting average egress time by <strong>14%</strong> and queue wait times by 7%.</li>
-        <li>Collaborated with a $75M healthcare education client — cleaned 10+ datasets and identified course enrollment improvement opportunities.</li>
-        <li>Implemented personalized course recommendations resulting in a <strong>10% increase in engagement</strong> and 15% boost in completion rates.</li>
-      </ul>
-    </div>
-
-    <div class="timeline-item reveal">
-      <div class="timeline-dot"></div>
-      <div class="timeline-date">Sep 2020 — May 2021</div>
-      <div class="timeline-company">Rutgers University</div>
-      <div class="timeline-meta"><span>Graduate Teaching Assistant</span> New Brunswick, NJ</div>
-      <ul class="timeline-bullets">
-        <li>Designed and developed <strong>10+ simulation models</strong> of manufacturing facilities, warehouses, call centers, and cafés.</li>
-        <li>Supported supply chain education for a class of 30 students by analyzing model results and developing creative problem-solving approaches.</li>
-      </ul>
-    </div>
-
-  </div>
-</section>
-
-<!-- EDUCATION -->
-<section id="education" class="section">
-  <div class="section-header reveal">
-    <div class="section-tag">Academic Background</div>
-    <h2 class="section-title">Education &amp; <span>Credentials</span></h2>
-  </div>
-  <div class="edu-grid">
-    <div class="edu-card reveal">
-      <div class="edu-year">Jul 2023 — Present</div>
-      <div class="edu-school">New England College</div>
-      <div class="edu-degree">Executive M.S. — Data Science and Analytics · Henniker, NH</div>
-      <div class="edu-gpa">GPA 4.0 / 4.0</div>
-      <div class="edu-courses">Data Science Tools · SQL for Data Analytics · Data Mining & Statistical Modeling · Machine Learning</div>
-    </div>
-    <div class="edu-card reveal">
-      <div class="edu-year">Sep 2019 — May 2021</div>
-      <div class="edu-school">Rutgers University</div>
-      <div class="edu-degree">M.S. — Industrial & Systems Engineering · New Brunswick, NJ</div>
-      <div class="edu-gpa">GPA 3.8 / 4.0</div>
-      <div class="edu-courses">Operations Research · Supply Chain Management · Enterprise Resource Planning</div>
-    </div>
-    <div class="edu-card reveal">
-      <div class="edu-year">Aug 2015 — May 2019</div>
-      <div class="edu-school">Veermata Jijabai Technological Institute</div>
-      <div class="edu-degree">B.Tech. — Production Engineering · Mumbai, India</div>
-      <div class="edu-gpa">GPA 7.5 / 10.0</div>
-      <div class="edu-courses">Simulation in Production Systems · Data Analytics in Engineering · Supply Chain Engineering · Project Management</div>
-    </div>
-  </div>
-</section>
-
-<!-- SKILLS -->
-<section id="skills" class="section">
-  <div class="section-header reveal">
-    <div class="section-tag">Technical Toolkit</div>
-    <h2 class="section-title">Skills &amp; <span>Technologies</span></h2>
-  </div>
-  <div class="skills-layout">
-    <div class="skill-card reveal">
-      <div class="skill-card-header">
-        <div class="skill-icon">💻</div>
-        <div class="skill-card-title">Languages & Packages</div>
-      </div>
-      <div class="skill-tags">
-        <span class="skill-tag">Python</span><span class="skill-tag">SQL</span><span class="skill-tag">R</span>
-        <span class="skill-tag">Java</span><span class="skill-tag">GAMS</span><span class="skill-tag">VBA</span>
-        <span class="skill-tag">Matlab</span><span class="skill-tag">Scikit-learn</span>
-        <span class="skill-tag">Matplotlib</span><span class="skill-tag">Seaborn</span>
-      </div>
-    </div>
-    <div class="skill-card reveal">
-      <div class="skill-card-header">
-        <div class="skill-icon">🛠️</div>
-        <div class="skill-card-title">Tools & Software</div>
-      </div>
-      <div class="skill-tags">
-        <span class="skill-tag">Power BI</span><span class="skill-tag">Tableau</span>
-        <span class="skill-tag">Kedro</span><span class="skill-tag">Alteryx</span>
-        <span class="skill-tag">AnyLogic</span><span class="skill-tag">AnyLogistix</span>
-        <span class="skill-tag">Excel</span><span class="skill-tag">MS Project</span><span class="skill-tag">Visio</span>
-      </div>
-    </div>
-    <div class="skill-card reveal">
-      <div class="skill-card-header">
-        <div class="skill-icon">🧠</div>
-        <div class="skill-card-title">Data Science</div>
-      </div>
-      <div class="skill-tags">
-        <span class="skill-tag">Machine Learning</span><span class="skill-tag">Predictive Modeling</span>
-        <span class="skill-tag">Statistical Analysis</span><span class="skill-tag">Hypothesis Testing</span>
-        <span class="skill-tag">A/B Testing</span><span class="skill-tag">ETL Processes</span>
-        <span class="skill-tag">Data Mining</span><span class="skill-tag">Forecasting</span>
-      </div>
-    </div>
-    <div class="skill-card reveal">
-      <div class="skill-card-header">
-        <div class="skill-icon">🔗</div>
-        <div class="skill-card-title">Operations & Supply Chain</div>
-      </div>
-      <div class="skill-tags">
-        <span class="skill-tag">Inventory Optimization</span><span class="skill-tag">Demand Planning</span>
-        <span class="skill-tag">Supply Planning</span><span class="skill-tag">Logistics Networks</span>
-        <span class="skill-tag">Linear Programming</span><span class="skill-tag">Dynamic Programming</span>
-        <span class="skill-tag">Warehouse Management</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CONTACT -->
-<section id="contact" class="section">
-  <div class="section-header reveal">
-    <div class="section-tag">Get In Touch</div>
-    <h2 class="section-title">Let's <span>connect</span></h2>
-  </div>
-  <div class="contact-layout">
-    <div class="contact-info reveal">
-      <p>I'm open to new opportunities, collaborations, and conversations. Whether you have a role, a project, or just want to talk data science — reach out!</p>
-      <div class="contact-items">
-        <div class="contact-row">
-          <div class="contact-icon-wrap">✉️</div>
-          <div><div class="contact-label">Email</div><div class="contact-val"><a href="mailto:ua85@rutgers.edu">ua85@rutgers.edu</a></div></div>
+    <main id="home">
+        <div class="badge">AVAILABLE FOR Q2 2026 OPPORTUNITIES</div>
+        <h1>Aimen<br><span>Sudhir</span></h1>
+        <p class="hero-sub">Data Scientist specialized in Supply Chain Optimization and Predictive Modeling. Currently transforming logistics data into strategic impact at SimWell.</p>
+        
+        <div class="btn-group">
+            <a href="#experience" class="btn btn-primary">View Projects</a>
+            <a href="mailto:ua85@rutgers.edu" class="btn btn-secondary">Get in Touch</a>
         </div>
-        <div class="contact-row">
-          <div class="contact-icon-wrap">📞</div>
-          <div><div class="contact-label">Phone</div><div class="contact-val"><a href="tel:8482348081">(848) 234-8081</a></div></div>
-        </div>
-        <div class="contact-row">
-          <div class="contact-icon-wrap">🔗</div>
-          <div><div class="contact-label">LinkedIn</div><div class="contact-val"><a href="https://www.linkedin.com/in/aimensudhir" target="_blank">linkedin.com/in/aimensudhir</a></div></div>
-        </div>
-        <div class="contact-row">
-          <div class="contact-icon-wrap">📍</div>
-          <div><div class="contact-label">Location</div><div class="contact-val">Boston, MA 02210</div></div>
-        </div>
-      </div>
-    </div>
-    <div class="contact-interests reveal">
-      <h3>Outside of Work</h3>
-      <div class="interest-items">
-        <div class="interest-row"><span class="interest-emoji">⚽</span> Playing soccer</div>
-        <div class="interest-row"><span class="interest-emoji">✈️</span> Exploring new cultures through travel</div>
-        <div class="interest-row"><span class="interest-emoji">🏋️</span> Working out & staying active</div>
-        <div class="interest-row"><span class="interest-emoji">🥾</span> Hiking</div>
-      </div>
-    </div>
-  </div>
-</section>
 
-<footer>
-  <span>© 2025 Aimen Sudhir · Boston, MA</span>
-  <span>Data Scientist · Open to Opportunities</span>
-</footer>
+        <div class="stats-bar">
+            <div><span class="stat-val">4+</span><span class="stat-label">Years Exp</span></div>
+            <div><span class="stat-val">$70B+</span><span class="stat-label">Scale Managed</span></div>
+            <div><span class="stat-val">4.0</span><span class="stat-label">Current GPA</span></div>
+        </div>
+    </main>
 
-<script>
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry, i) => {
-      if (entry.isIntersecting) {
-        setTimeout(() => entry.target.classList.add('visible'), i * 60);
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.1 });
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    <section id="experience">
+        <h2 class="section-title">Professional <span>Impact</span></h2>
+        
+        <div class="exp-item">
+            <div class="exp-date">NOV 2023 — PRESENT</div>
+            <div class="exp-content">
+                <h3 class="exp-company">SimWell, Inc.</h3>
+                <span class="exp-role">Data Scientist — Boston, MA</span>
+                <ul class="exp-bullets">
+                    <li>Optimized inventory for a $3.6B health firm, achieving a <strong>23% reduction</strong> in total logistics costs.</li>
+                    <li>Engineered large-scale data pipelines using <strong>Kedro and Python</strong>.</li>
+                    <li>Deployed Power BI solutions reducing executive reporting cycles from months to weeks.</li>
+                </ul>
+            </div>
+        </div>
 
-  const sections = document.querySelectorAll('section[id]');
-  const navLinks = document.querySelectorAll('.nav-links a');
-  window.addEventListener('scroll', () => {
-    let current = '';
-    sections.forEach(s => { if (window.scrollY >= s.offsetTop - 120) current = s.id; });
-    navLinks.forEach(a => {
-      a.classList.toggle('active', a.getAttribute('href') === '#' + current);
-    });
-  });
-</script>
+        <div class="exp-item">
+            <div class="exp-date">AUG 2022 — OCT 2023</div>
+            <div class="exp-content">
+                <h3 class="exp-company">Boston Consulting Group (BCG)</h3>
+                <span class="exp-role">Data Scientist — Boston, MA</span>
+                <ul class="exp-bullets">
+                    <li>Built multi-echelon optimization models for a $70B MedTech client, slashing inventory by 20%.</li>
+                    <li>Designed logistics networks for global mining operations, improving delivery precision by 4%.</li>
+                    <li>Mentored 20+ junior scientists on advanced predictive modeling.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" style="background: #080a0f;">
+        <h2 class="section-title">Technical <span>Toolkit</span></h2>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <h3>Core Languages</h3>
+                <div class="tag-container">
+                    <span class="tag">Python</span><span class="tag">SQL</span><span class="tag">R</span><span class="tag">Java</span><span class="tag">VBA</span>
+                </div>
+            </div>
+            <div class="skill-card">
+                <h3>ML & Analytics</h3>
+                <div class="tag-container">
+                    <span class="tag">Scikit-learn</span><span class="tag">Kedro</span><span class="tag">Predictive Modeling</span><span class="tag">A/B Testing</span>
+                </div>
+            </div>
+            <div class="skill-card">
+                <h3>Supply Chain</h3>
+                <div class="tag-container">
+                    <span class="tag">AnyLogic</span><span class="tag">Inventory Optimization</span><span class="tag">GAMS</span><span class="tag">Network Design</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2026 Aimen Sudhir. Designed for high-performance analytics.</p>
+    </footer>
+
 </body>
 </html>
