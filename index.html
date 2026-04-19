@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Aimen Sudhir — Data Scientist</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%2309090e'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='system-ui,sans-serif' font-weight='800' font-size='13' fill='%2300e5c3'>AS</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,700;12..96,800&family=Outfit:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
@@ -652,7 +653,7 @@ footer {
 .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
 .mobile-menu {
-  display: none;
+  display: flex;
   flex-direction: column;
   position: fixed;
   top: 60px; left: 0; right: 0;
@@ -662,8 +663,18 @@ footer {
   padding: 16px 24px 24px;
   z-index: 199;
   gap: 4px;
+  transform: translateY(-10px);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: transform 0.25s ease, opacity 0.25s ease, visibility 0.25s;
 }
-.mobile-menu.open { display: flex; }
+.mobile-menu.open {
+  transform: translateY(0);
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
 .mobile-menu a {
   font-family: var(--mono);
   font-size: 14px;
@@ -711,13 +722,13 @@ footer {
     margin-top: 48px;
   }
   .stat {
-    padding-right: 0;
+    padding: 0 16px 20px 16px;
     margin-right: 0;
     border-right: none;
     border-bottom: 1px solid var(--border);
-    padding-bottom: 20px;
   }
-  .stat:nth-child(odd) { border-right: 1px solid var(--border); padding-right: 20px; }
+  .stat:nth-child(odd) { border-right: 1px solid var(--border); padding-left: 0; }
+  .stat:nth-child(even) { padding-right: 0; }
   .stat:nth-child(3), .stat:nth-child(4) { border-bottom: none; padding-bottom: 0; }
   .stat-val { font-size: 32px; }
 
@@ -809,7 +820,10 @@ footer {
     </p>
     <div class="hero-actions">
       <a class="btn-primary" href="#work">View my work ↓</a>
-      <a class="btn-secondary" href="https://linkedin.com/in/aimensudhir" target="_blank">LinkedIn ↗</a>
+      <a class="btn-secondary" href="https://linkedin.com/in/aimensudhir" target="_blank">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        LinkedIn
+      </a>
     </div>
   </div>
   <div class="hero-stats-wrap">
