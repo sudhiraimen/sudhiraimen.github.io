@@ -27,13 +27,22 @@ html { scroll-behavior: smooth; }
   --serif: 'Bricolage Grotesque', sans-serif;
   --sans: 'Outfit', sans-serif;
   --mono: 'DM Mono', monospace;
+
+  /* Type scale */
+  --text-xs:   11px;  /* labels, dates, eyebrows */
+  --text-sm:   13px;  /* secondary body, captions */
+  --text-base: 15px;  /* primary body */
+  --text-md:   17px;  /* card titles, emphasis */
+  --text-lg:   20px;  /* sub-headings */
+  --text-xl:   24px;  /* nav logo, minor headings */
+  --text-stat: 40px;  /* stat numbers, contact h2 */
 }
 
 body {
   background: var(--bg);
   color: var(--text);
   font-family: var(--sans);
-  font-size: 16px;
+  font-size: var(--text-base);
   line-height: 1.6;
   overflow-x: hidden;
 }
@@ -60,7 +69,7 @@ nav.scrolled {
 }
 .nav-logo {
   font-family: var(--serif);
-  font-size: 20px;
+  font-size: var(--text-xl);
   font-weight: 800;
   color: var(--text);
   text-decoration: none;
@@ -70,7 +79,7 @@ nav.scrolled {
 .nav-links { display: flex; gap: 8px; align-items: center; }
 .nav-links a {
   font-family: var(--mono);
-  font-size: 12px;
+  font-size: var(--text-xs);
   letter-spacing: 0.06em;
   color: var(--text3);
   text-decoration: none;
@@ -82,7 +91,7 @@ nav.scrolled {
 .nav-links a.active { color: var(--accent); background: var(--accent-dim); }
 .nav-cta {
   font-family: var(--mono);
-  font-size: 12px;
+  font-size: var(--text-xs);
   letter-spacing: 0.06em;
   background: var(--accent);
   color: #000;
@@ -144,7 +153,7 @@ nav.scrolled {
   align-items: center;
   gap: 8px;
   font-family: var(--mono);
-  font-size: 12px;
+  font-size: var(--text-xs);
   letter-spacing: 0.1em;
   color: var(--accent);
   margin-bottom: 32px;
@@ -176,7 +185,7 @@ nav.scrolled {
 }
 
 .hero-title {
-  font-size: 18px;
+  font-size: var(--text-md);
   font-weight: 300;
   color: var(--text2);
   margin-bottom: 40px;
@@ -185,7 +194,7 @@ nav.scrolled {
 }
 
 .hero-bio {
-  font-size: 17px;
+  font-size: var(--text-base);
   font-weight: 300;
   color: var(--text2);
   line-height: 1.75;
@@ -213,7 +222,7 @@ nav.scrolled {
   background: var(--accent);
   color: #000;
   font-family: var(--sans);
-  font-size: 14px;
+  font-size: var(--text-sm);
   font-weight: 600;
   padding: 13px 28px;
   border-radius: 4px;
@@ -228,7 +237,7 @@ nav.scrolled {
   background: transparent;
   color: var(--text2);
   font-family: var(--sans);
-  font-size: 14px;
+  font-size: var(--text-sm);
   font-weight: 400;
   padding: 13px 28px;
   border-radius: 4px;
@@ -265,13 +274,13 @@ nav.scrolled {
 .stat:last-child { border-right: none; margin-right: 0; }
 .stat-val {
   font-family: var(--serif);
-  font-size: 40px;
+  font-size: var(--text-stat);
   font-weight: 800;
   color: var(--accent);
   line-height: 1;
 }
 .stat-label {
-  font-size: 13px;
+  font-size: var(--text-sm);
   color: var(--text3);
   margin-top: 4px;
 }
@@ -296,7 +305,7 @@ nav.scrolled {
 
 .section-eyebrow {
   font-family: var(--mono);
-  font-size: 11px;
+  font-size: var(--text-xs);
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--accent);
@@ -362,7 +371,7 @@ nav.scrolled {
 }
 .exp-left {}
 .exp-company {
-  font-size: 20px;
+  font-size: var(--text-lg);
   font-weight: 600;
   color: var(--text);
   margin-bottom: 4px;
@@ -372,7 +381,7 @@ nav.scrolled {
   align-items: center;
   gap: 6px;
   font-family: var(--mono);
-  font-size: 11px;
+  font-size: var(--text-xs);
   letter-spacing: 0.06em;
   color: var(--accent);
   background: var(--accent-dim);
@@ -382,11 +391,11 @@ nav.scrolled {
 .exp-right { text-align: right; flex-shrink: 0; }
 .exp-date {
   font-family: var(--mono);
-  font-size: 12px;
+  font-size: var(--text-xs);
   color: var(--text3);
 }
 .exp-location {
-  font-size: 13px;
+  font-size: var(--text-sm);
   color: var(--text3);
   margin-top: 2px;
 }
@@ -400,7 +409,7 @@ nav.scrolled {
   border-top: 1px solid var(--border);
 }
 .exp-bullets li {
-  font-size: 14px;
+  font-size: var(--text-sm);
   color: var(--text2);
   padding-left: 22px;
   position: relative;
@@ -417,7 +426,7 @@ nav.scrolled {
 }
 .hl {
   font-family: var(--mono);
-  font-size: 13px;
+  font-size: var(--text-sm);
   font-weight: 500;
   color: var(--accent);
 }
@@ -450,7 +459,7 @@ nav.scrolled {
 }
 .skill-card-title {
   font-family: var(--mono);
-  font-size: 11px;
+  font-size: var(--text-xs);
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--accent);
@@ -464,7 +473,7 @@ nav.scrolled {
 .skill-tags { display: flex; flex-wrap: wrap; gap: 7px; }
 .tag {
   font-family: var(--mono);
-  font-size: 12px;
+  font-size: var(--text-xs);
   color: var(--text2);
   background: rgba(255,255,255,0.04);
   border: 1px solid var(--border);
@@ -498,7 +507,7 @@ nav.scrolled {
 .edu-card:hover { border-color: var(--border2); transform: translateY(-2px); }
 
 .edu-school {
-  font-size: 18px;
+  font-size: var(--text-md);
   font-weight: 700;
   color: var(--text);
   margin-bottom: 6px;
@@ -506,27 +515,32 @@ nav.scrolled {
 }
 .edu-gpa {
   font-family: var(--mono);
-  font-size: 15px;
+  font-size: var(--text-sm);
   font-weight: 500;
   color: var(--accent);
   margin-bottom: 12px;
+  display: inline-flex;
+  align-self: flex-start;
+  background: var(--accent-dim);
+  padding: 3px 10px;
+  border-radius: 4px;
 }
 .edu-degree {
-  font-size: 13px;
+  font-size: var(--text-sm);
   color: var(--text2);
   margin-bottom: 12px;
   line-height: 1.4;
 }
 .edu-date {
   font-family: var(--mono);
-  font-size: 11px;
+  font-size: var(--text-xs);
   color: var(--text3);
   margin-top: auto;
   padding-top: 16px;
   border-top: 1px solid var(--border);
 }
 .edu-courses {
-  font-size: 12px;
+  font-size: var(--text-xs);
   color: var(--text3);
   line-height: 1.6;
   margin-bottom: 0;
@@ -546,13 +560,13 @@ nav.scrolled {
 }
 .contact-left h2 {
   font-family: var(--serif);
-  font-size: 40px;
+  font-size: var(--text-stat);
   font-weight: 800;
   color: #000;
   line-height: 1.1;
 }
 .contact-left p {
-  font-size: 15px;
+  font-size: var(--text-base);
   color: rgba(0,0,0,0.6);
   margin-top: 6px;
 }
@@ -564,7 +578,7 @@ nav.scrolled {
   background: #000;
   color: var(--accent);
   font-family: var(--mono);
-  font-size: 12px;
+  font-size: var(--text-xs);
   letter-spacing: 0.06em;
   padding: 11px 20px;
   border-radius: 4px;
@@ -594,13 +608,13 @@ nav.scrolled {
   margin-bottom: 16px;
 }
 .outside-title {
-  font-size: 17px;
+  font-size: var(--text-md);
   font-weight: 600;
   color: var(--text);
   margin-bottom: 10px;
 }
 .outside-desc {
-  font-size: 13px;
+  font-size: var(--text-sm);
   color: var(--text2);
   line-height: 1.65;
 }
@@ -618,12 +632,12 @@ footer {
 .footer-name {
   font-family: var(--serif);
   font-weight: 700;
-  font-size: 18px;
+  font-size: var(--text-md);
   color: var(--text2);
 }
 .footer-note {
   font-family: var(--mono);
-  font-size: 11px;
+  font-size: var(--text-xs);
   color: var(--text3);
   letter-spacing: 0.06em;
 }
@@ -677,7 +691,7 @@ footer {
 }
 .mobile-menu a {
   font-family: var(--mono);
-  font-size: 14px;
+  font-size: var(--text-base);
   letter-spacing: 0.06em;
   color: var(--text2);
   text-decoration: none;
@@ -709,8 +723,8 @@ footer {
 
   /* Hero */
   .hero { padding: 100px 20px 60px; min-height: 100svh; }
-  .hero-title { font-size: 14px; }
-  .hero-bio { font-size: 15px; margin-bottom: 36px; }
+  .hero-title { font-size: var(--text-sm); }
+  .hero-bio { font-size: var(--text-base); margin-bottom: 36px; }
   .hero-actions { flex-direction: column; gap: 10px; }
   .btn-primary, .btn-secondary { justify-content: center; width: 100%; }
 
@@ -730,7 +744,7 @@ footer {
   .stat:nth-child(odd) { border-right: 1px solid var(--border); padding-left: 0; }
   .stat:nth-child(even) { padding-right: 0; }
   .stat:nth-child(3), .stat:nth-child(4) { border-bottom: none; padding-bottom: 0; }
-  .stat-val { font-size: 32px; }
+  .stat-val { font-size: 28px; }
 
   /* Sections */
   .section { padding: 60px 20px; }  .section-heading { margin-bottom: 36px; }
@@ -753,7 +767,7 @@ footer {
 
   /* Contact strip */
   .contact-strip { padding: 48px 20px; flex-direction: column; align-items: flex-start; }
-  .contact-strip h2 { font-size: 32px; }
+  .contact-strip h2 { font-size: var(--text-stat); }
   .contact-links { width: 100%; flex-direction: column; }
   .contact-link { justify-content: center; }
 
@@ -767,7 +781,7 @@ footer {
 @media (max-width: 480px) {
   .hero-name { line-height: 0.9; }
   .hero-stats { grid-template-columns: 1fr 1fr; }
-  .exp-company { font-size: 17px; }
+  .exp-company { font-size: var(--text-md); }
   .skills-grid { grid-template-columns: 1fr; }
   .edu-grid { grid-template-columns: 1fr; }
   .section { padding: 48px 16px; }
